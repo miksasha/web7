@@ -1,11 +1,14 @@
 import AuthScreen from './Authority/Authority'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 
 function App() {
   return (
-    <>
-      <AuthScreen />
-    </>
+    <BrowserRouter>
+    <Routes>
+        <Route index element={<AuthScreen />} />
+    </Routes>
+  </BrowserRouter>
   );
 }
 
