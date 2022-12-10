@@ -11,11 +11,10 @@ class WeatherCard extends React.Component {
 
     return (
       <div className="all-content">
-          <h3 className="card-title">{weekdayName}</h3>
-          <i className={imgURL}></i>
+          <h3>{weekdayName}</h3>
           <h2>{Math.round(this.props.day.main.temp)} °C</h2>
-          <div className="card-body">
-            <p className="card-text">{this.props.day.weather[0].description}</p>
+          <div >
+            <p >{this.props.day.weather[0].description}</p>
           </div>
       </div>
     )
