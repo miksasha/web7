@@ -7,9 +7,9 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-        <Route index element={<AuthScreen />} />
-        <Route path="/dashboard"  element={<WeatherPage />} />
-    </Routes>
+        <Route  index element={<AuthScreen />}/>
+        <Route path="/dashboard" element={<WeatherPage />}/>
+     </Routes>
   </BrowserRouter>
   );
 }

@@ -1,41 +1,59 @@
 import React, {Component} from 'react'
-import classes from './Authority.css'
+import './Authority.css'
 
 export default class Authority extends Component {
 
-    state = {
-        flag:false
-        // input: Array.from(
-        //     document.getElementsByClassName('name')
-        //   )[0],
+    constructor() {
+		super();
+		this.state = { 
+      inputName:  <input type='email' id="name" className="input-style" name="name" 
+      onChange={event => this.onChangeLoginHandler(event)} 
+      />,
+      inputPassword: <input type='password' className="input-style"  name="password" 
+      onChange={event => this.onChangePassHandler(event)}
+        />,
+        logCorrect: false,
+        passCorrect: false,
     };
-
-    submitHandler = () => {
-
-    }
-
-    onFocusHandler = (event) => {
-        console.log( event);
     }
 
     handleSubmit = (event) =>  {
         event.preventDefault();
         console.log('Відправлено');
+        if(this.state.logCorrect && this.state.passCorrect){
+            window.location.assign('http://localhost:3000/dashboard');
+        }
+
     }
 
-    onChangeLoginHandler = (event) => {      
-        console.log( event.target.value);
-        const logPass = "Sasha3";
-       // if (event.target.value == logPass)
-
-        this.setState({
-        flag:true
-        })
-        //his.setState({input: this.state.input.setAttribute('border-color', 'red')});
+    onChangeLoginHandler = (event) => {    
+        const logPass = "Sasha@3";
+        if(event.target.value != logPass){
+            this.setState( {inputName:  <input type='email' id="name" className="input-error" name="name" 
+            onChange={event => this.onChangeLoginHandler(event)} 
+            />,
+            logCorrect: false,});
+        }else{
+            this.setState( {inputName:  <input type='email' id="name" className="input-style" name="name" 
+            onChange={event => this.onChangeLoginHandler(event)} 
+            />,
+            logCorrect: true,});
+        }
     }
 
     onChangePassHandler = (event) => {
-        console.log( event.target.value);
+        const logPass = "Sasha3";
+        if(event.target.value != logPass){
+            this.setState( {inputPassword: <input type='password' className="input-error"  name="password" 
+            onChange={event => this.onChangePassHandler(event)}
+              />,
+              passCorrect: false,});
+        }else{
+            this.setState( {inputPassword: <input type='password' className="input-style"  name="password" 
+            onChange={event => this.onChangePassHandler(event)}
+              />,
+              passCorrect: true,});
+        }
     }
 
     render() {
@@ -45,20 +63,12 @@ export default class Authority extends Component {
                     <h1>Log to Web App</h1>
                     <form className='AuthorityForm' onSubmit={this.handleSubmit}>
                         <label htmlFor="name">E-mail</label>
-                        <input type='email' id="name" className="name" name="name" 
-                            onChange={event => this.onChangeLoginHandler(event)} 
-                            //onFocus={this.onFocusHandler(this)}
-                            //errorMessage='Incorrect email'
-                            border-color={this.state.flag === true ? 'red': 'blue'}
-                            />
+                        {this.state.inputName}
 
                         <label htmlFor="password">Password</label>
-                        <input type='password' id="password" name="password" 
-                            onChange={event => this.onChangePassHandler(event)} 
-                        //errorMessage='Incorrect passoword'
-                        />
+                        {this.state.inputPassword}
                         
-                        <button type='submit' onClick={this.submitHandler}>Login</button>
+                        <button type='submit' >Login</button>
                     </form>
                 </div>
             </div>
